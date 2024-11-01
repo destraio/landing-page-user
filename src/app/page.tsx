@@ -11,7 +11,19 @@ import image06 from '../assets/images/6.jpg';
 import image07 from '../assets/images/7.jpg';
 import image08 from '../assets/images/8.jpg';
 import image09 from '../assets/images/9.jpg';
-import img_connect from '../assets/images/connect.jpg';
+import img_connect from '../assets/images/connect-person.jpg';
+import connect from '../assets/images/connect.png';
+import expense from '../assets/images/expense.png';
+import grocery from '../assets/images/grocery.png';
+import nutrition from '../assets/images/nutrition.png';
+import party from '../assets/images/party.png';
+import planner from '../assets/images/planner.png';
+import recipebook from '../assets/images/recipebook.png';
+import reverse from '../assets/images/reverse.png';
+import search from '../assets/images/search.png';
+import tracker from '../assets/images/tracker.png';
+import info from '../assets/images/info.png';
+import drops from '../assets/images/drops.png';
 import FormComponent from './components/form';
 
 export default function Home() {
@@ -103,52 +115,52 @@ export default function Home() {
 	const NAV = [
 		{
 			title: 'Search',
-			icon: null,
+			icon: search,
 			tip: 'Explore recipes by cooking time, cost, dietary needs, cuisine, meal and course',
 		},
 		{
 			title: 'Reverse Lookup',
-			icon: null,
+			icon: reverse,
 			tip: 'Find recipes based on the ingredients that you have'
 		},
 		{
 			title: 'Nutrition Analyzer',
-			icon: null,
+			icon: nutrition,
 			tip: 'Discover the nutritional value of any food or recipe'
 		},
 		{
 			title: 'Recipe Book',
-			icon: null,
+			icon: recipebook,
 			tip: 'Your recipe book to import recipes and videos, create your own, save, write or edit'
 		},
 		{
 			title: 'Connect',
-			icon: null,
+			icon: connect,
 			tip: 'Connect with family, friends, groups, and experts to post and share'
 		},
 		{
 			title: 'Meal Planner',
-			icon: null,
+			icon: planner,
 			tip: 'Plan meals daily, weekly, monthly, or in advance of any special occasion'
 		},
 		{
 			title: 'Grocery Shopper',
-			icon: null,
+			icon: grocery,
 			tip: 'Create digital shopping lists, compare prices and order directly from your favorite grocers'
 		},
 		{
 			title: 'Expense Tracker',
-			icon: null,
+			icon: expense,
 			tip: 'Track food expenses by item or category daily, weekly and monthly'
 		},
 		{
 			title: 'Nutrition Tracker',
-			icon: null,
+			icon: tracker,
 			tip: 'Track calories, macros and nutrients daily, weekly and monthly'
 		},
 		{
 			title: 'Party Planner',
-			icon: null,
+			icon: party,
 			tip: 'Organize party events, menus, budget, invites, confirmations'
 		},
 	]
@@ -197,11 +209,22 @@ export default function Home() {
 							<dl className='grid grid-rows-2 grid-flow-col gap-x-4 gap-y-20 text-center'>
 								{NAV.map((item, index) => (
 									<div key={index} className='group'>
-										<dd className='relative mb-2'>
-											<div className='absolute text-sm bg-gray-200 p-5 rounded-tr-xl left-1/4 bottom-3/4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300'>{item.tip}</div>
-											<div className='h-10 w-10 bg-black m-auto'></div>
+										<dd className='relative mb-6'>
+											<div className='absolute text-sm z-10 bg-gray-200 p-5 rounded-tr-xl left-1/4 bottom-3/4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300'>{item.tip}</div>
+											<div className='relative w-[60px] m-auto z-0'>
+												<Image
+													src={item.icon}
+													alt=""
+													className="w-[60px] h-[60px] m-auto object-cover object-center"
+												/>
+												<Image
+													src={info}
+													alt=""
+													className="w-[20px] h-[20px] m-auto object-cover object-center absolute top-0 ml-4 left-full"
+												/>
+											</div>
 										</dd>
-										<dt className='text-lg bold'>{item.title}</dt>
+										<dt className={`text-xl font-bold`}>{item.title}</dt>
 									</div>
 								))}
 							</dl>
@@ -209,10 +232,10 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className={`h-screen flex flex-row justify-start items-center relative bg-green-300`}>
+				<div className={`h-screen flex flex-row justify-start items-center relative bg-[#027e6f]`}>
 					<div className="px-4 w-full">
 						<div className='max-w-screen-xl px-2 m-auto text-center'>
-							<h2 className="font-bold text-5xl mb-10">What’s the ROI of Healthy Eating?</h2>
+							<h2 className="font-bold text-5xl mb-10 text-white">What’s the ROI of Healthy Eating?</h2>
 							<div className='grid grid-cols-3 gap-8 text-xl'>
 								<div className='bg-white p-4 rounded-lg min-h-64 flex items-center justify-center'>
 									<p>Improved health</p>
@@ -227,13 +250,21 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-
-				<div className={`scroll__panel h-screen flex flex-row justify-start relative items-center bg-white`}>
-					<div className="px-4 w-1/2">
-						<div className='max-w-lg px-2 m-auto'>
+				
+				<div className={`scroll__panel h-screen flex flex-row justify-start items-center relative z-1 bg-white`}>
+					<div className="px-4 w-7/12">
+						<div className='max-w-xl px-2 m-auto'>
 							<h2 className="font-bold text-5xl mb-4">Healthy eating, higher quality of life</h2>
 							<p>Eat smarter with ABC App to fuel your body, boost your energy, and improve your overall well-being.</p>
 						</div>
+					</div>
+					<div className={`w-5/12 flex items-center justify-center transition-opacity bg-white ${inViewStates[DATA.length] ? 'opacity-100' : 'opacity-0'}`}>
+
+						<Image
+							src={drops}
+							alt=""
+							className="w-full h-full max-h-[80lvh] m-auto object-contain object-center"
+						/>
 					</div>
 				</div>
 

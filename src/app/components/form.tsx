@@ -80,18 +80,23 @@ const FormComponent = () => {
 					<p className='mb-4'>We’re working hard to put this app together. Things are going well, and we should have more soon. If you’d like us to send you an update as we progress, just sign up below:</p>
 				</>
 				: 
-				<>
-					<h2 className="font-bold text-4xl mb-4">You’re on the list! 👍</h2>
-					<p className='mb-4'>Thanks so much for signing up for our pre-launch list. We'll be in touch soon to let you know about our progress and give you sneak peeks on what we're working on.</p>
-					<p className='mb-4'>High five!</p>
-					<p className='mb-4'>The team</p>
-					<p className='mb-4'>P.S.</p>
-					<p className='mb-4'><em>Liked this preview? Help us reach more people who care about healthy eating by sharing it with your friends!</em></p>
-					<ul className="flex flex-row gap-4">
-						<li><a href="/" className="bg-blue-600 text-white py-2 px-4 rounded-md transition-colors hover:bg-blue-400">Share on Facebook</a></li>
-						<li><a href="/" className="bg-black text-white py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Share on X</a></li>
-					</ul>
-				</> 
+				<div className="flex flex-row flex-nowrap gap-5">
+					<div className="w-7/12">
+						<h2 className="font-bold text-4xl mb-4">You’re on the list! 👍</h2>
+						<p className='mb-4'>Thanks so much for signing up for our pre-launch list. We'll be in touch soon to let you know about our progress and give you sneak peeks on what we're working on.</p>
+						<p className='mb-4'>High five!</p>
+						<p className='mb-4'>The team</p>
+						<p className='mb-4'>P.S.</p>
+						<p className='mb-4'><em>Liked this preview? Help us reach more people who care about healthy eating by sharing it with your friends!</em></p>
+						<ul className="flex flex-row gap-4">
+							<li><a href="/" className="bg-blue-600 text-white py-2 px-4 rounded-md transition-colors hover:bg-blue-400">Share on Facebook</a></li>
+							<li><a href="/" className="bg-black text-white py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Share on X</a></li>
+						</ul>
+					</div>
+					<div className="w-5/12">
+						<iframe src="https://giphy.com/embed/hZj44bR9FVI3K" className="h-full w-full" allowFullScreen></iframe>
+					</div>
+				</div> 
 			}
 
 

@@ -1,5 +1,5 @@
 "use client";
-
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useInViewport } from './hooks/useInViewport';
 import image01 from '../assets/images/1.jpeg';
@@ -15,7 +15,16 @@ import img_connect from '../assets/images/connect.jpg';
 import FormComponent from './components/form';
 
 export default function Home() {
-    const inViewStates = useInViewport('scroll__panel');
+	// const [isClient, setIsClient] = useState(false);
+
+	const inViewStates = useInViewport('scroll__panel');
+
+	// useEffect(() => {
+	// 	setIsClient(true);
+	// }, []);
+	
+	// if (!isClient) return null; // Prevents rendering until client-side
+
 	const DATA = [
 		{
 			title: 'Healthy eating made easy',
@@ -91,7 +100,6 @@ export default function Home() {
 			img_path: img_connect,
 		},
 	];
-
 	const NAV = [
 		{
 			title: 'Search',
@@ -147,39 +155,37 @@ export default function Home() {
 
 	return (
 		<main className="flex">
-			<section className="scroll flex-1">
+			<section className="scroll flex-1 text-lg">
 				{DATA.map((item, index) => (
 					<div key={index} className={`scroll__panel h-screen flex flex-row justify-start items-center`}>
-						<div className="px-4 w-1/2">
-							<div className='max-w-lg px-2 m-auto'>
-								{index === 0 ? <h1 className="font-bold text-4xl mb-4">{item.title}</h1> : <h2 className="font-bold text-4xl mb-4">{item.title}</h2> }
+						<div className="px-4 w-7/12">
+							<div className='max-w-xl px-2 m-auto'>
+								{index === 0 ? <h1 className="font-bold text-5xl mb-4">{item.title}</h1> : <h2 className="font-bold text-5xl mb-4">{item.title}</h2> }
 								<p>{item.text}</p>
 								{item.subtitle && item.subtitle.length > 0 ? <h3 className="font-bold text-xl mb-4 mt-6">{item.subtitle}</h3> : null}
 								{item.parameters && item.parameters.length > 0 ?
-									<ul className={`flex flex-wrap gap-5`}>
+									<ul className={`grid grid-cols-3 gap-5`}>
 										{item.parameters.map( (parameter, idx) => (
-											<li key={idx}><button className={`py-2 px-4 text-xs shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
+											<li key={idx} className='w-full'><button className={`w-full inline-block py-2 px-4 text-xs shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
 										))}
 									</ul>
 								: null}
 								{item.subtitle_2 && item.subtitle_2.length > 0 ? <h3 className="font-bold text-xl mb-4 mt-6">{item.subtitle_2}</h3> : null}
 								{item.parameters_2 && item.parameters_2.length > 0 ?
-									<ul className={`flex flex-wrap gap-5`}>
+									<ul className={`grid grid-cols-3 gap-5`}>
 										{item.parameters_2.map( (parameter, idx) => (
-											<li key={idx}><button className={`w-24 py-2 px-4 text-xs shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
+											<li key={idx} className='w-full'><button className={`w-full max-w-[220px] inline-block py-2 px-4 text-xs shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
 										))}
 									</ul>
 								: null}
 							</div>
 						</div>
-						<div className={`parallax-image w-1/2 fixed h-screen right-0 top-0 transition-opacity ${inViewStates[index] ? 'opacity-100' : 'opacity-0'}`}>
+						<div className={`parallax-image w-5/12 fixed right-10 bottom-10 top-10 flex items-center justify-center transition-opacity ${inViewStates[index] ? 'opacity-100' : 'opacity-0'}`}>
 							{item.img_path ? 
 								<Image
 									src={item.img_path}
-									width={100}
-									height={100}
 									alt=""
-									className="w-full h-full object-cover object-center"
+									className="w-full h-full max-h-[80lvh] m-auto object-cover object-center"
 								/> : null }
 						</div>
 					</div>
@@ -187,10 +193,10 @@ export default function Home() {
 				<div className={`h-screen flex flex-row justify-start items-center relative bg-white`}>
 					<div className="px-4 w-full">
 						<div className='max-w-screen-xl px-2 m-auto'>
-							<h2 className="font-bold text-4xl mb-10">All your tools in one place<br />at your fingertips</h2>
-							<dl className='grid grid-rows-2 grid-flow-col gap-x-4 gap-y-10 gap text-center'>
+							<h2 className="font-bold text-5xl mb-20">All your tools in one place<br />at your fingertips</h2>
+							<dl className='grid grid-rows-2 grid-flow-col gap-x-4 gap-y-20 text-center'>
 								{NAV.map((item, index) => (
-									<div className='group'>
+									<div key={index} className='group'>
 										<dd className='relative mb-2'>
 											<div className='absolute text-sm bg-gray-200 p-5 rounded-tr-xl left-1/4 bottom-3/4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-300'>{item.tip}</div>
 											<div className='h-10 w-10 bg-black m-auto'></div>
@@ -206,7 +212,7 @@ export default function Home() {
 				<div className={`h-screen flex flex-row justify-start items-center relative bg-green-300`}>
 					<div className="px-4 w-full">
 						<div className='max-w-screen-xl px-2 m-auto text-center'>
-							<h2 className="font-bold text-4xl mb-10">What’s the ROI of Healthy Eating?</h2>
+							<h2 className="font-bold text-5xl mb-10">What’s the ROI of Healthy Eating?</h2>
 							<div className='grid grid-cols-3 gap-8 text-xl'>
 								<div className='bg-white p-4 rounded-lg min-h-64 flex items-center justify-center'>
 									<p>Improved health</p>
@@ -225,20 +231,31 @@ export default function Home() {
 				<div className={`scroll__panel h-screen flex flex-row justify-start relative items-center bg-white`}>
 					<div className="px-4 w-1/2">
 						<div className='max-w-lg px-2 m-auto'>
-							<h2 className="font-bold text-4xl mb-4">Healthy eating, higher quality of life</h2>
+							<h2 className="font-bold text-5xl mb-4">Healthy eating, higher quality of life</h2>
 							<p>Eat smarter with ABC App to fuel your body, boost your energy, and improve your overall well-being.</p>
 						</div>
 					</div>
 				</div>
 
-				<div className={`scroll__panel h-screen flex flex-row justify-start relative items-center`}>
-					<div className="px-4 w-1/2 bg-white">
-						<div className='max-w-lg px-2 m-auto'>
-							<h2 className="font-bold text-4xl mb-4">Healthy eating, higher quality of life</h2>
+				<div className={`scroll__panel h-screen flex flex-row justify-start relative items-center bg-white`}>
+					<div className="px-4 w-full">
+						<div className='max-w-3xl px-12 py-10 m-auto bg-gray-200 rounded-lg'>
 							<FormComponent />
 						</div>
 					</div>
 				</div>
+
+				<div className={`scroll__panel h-screen flex flex-row justify-start relative items-center bg-white`}>
+					<div className="px-4 w-full">
+						<div className='max-w-lg px-2 m-auto text-center'>
+							<p>You are invited to take this</p>
+							<h2 className="font-bold text-5xl mb-4">Survey</h2>
+							<p className='mb-2'>Help us shape the future of personalized healthy eating—your input matters, and it only takes 5 minutes to complete!</p>
+							<a className='border-black border-solid border-2 px-4 py-2 inline-block rounded-md transition-colors hover:border-gray-700 hover:bg-gray-700 hover:text-white' href="https://forms.office.com/pages/responsepage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAdMxhw5UMDFaN01MWURVSEU2TVpaUzk0VVoxUDZaRi4u&route=shorturl" target='_blank'>Start Now</a>
+						</div>
+					</div>
+				</div>
+
 
 			</section>
 

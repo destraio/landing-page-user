@@ -64,7 +64,7 @@ const FormComponent = () => {
 	
 		// Add event listener for form submission
 		formElement?.addEventListener("submit", handleFormSubmit);
-	
+
 		// Cleanup event listener on unmount
 		return () => {
 			formElement?.removeEventListener("submit", handleFormSubmit);
@@ -76,25 +76,25 @@ const FormComponent = () => {
 		<>
 			{!isFormSubmit ?
 				<>
-					<h2 className="font-bold text-4xl mb-4">Hello! 👋 You caught us before we are ready.</h2>
-					<p className='mb-4 font-[500]'>We&#39;re working hard to put this app together. Things are going well, and we should have more soon. If you’d like us to send you an update as we progress, just sign up below:</p>
+					<h2 className="font-bold text-4xl mb-8 flex items-center gap-2">Hello! <span className="text-5xl">👋</span> You caught us before we are ready.</h2>
+					<p className='mb-10 font-[500]'>We&#39;re working hard to put this app together. Things are going well, and we should have more soon. If you’d like us to send you an update as we progress, just sign up below:</p>
 				</>
 				: 
-				<div className="flex flex-row flex-nowrap gap-5">
+				<div className="flex flex-row flex-nowrap gap-5 justify-between">
 					<div className="w-7/12 font-[500]">
-						<h2 className="font-bold text-4xl mb-4">You&#39;re on the list! 👍</h2>
+						<h2 className="font-bold text-4xl mb-4 flex items-center gap-2">You&#39;re on the list! <span className="text-5xl">👍</span></h2>
 						<p className="mb-4">Thanks so much for signing up for our pre-launch list. We&#39;ll be in touch soon to let you know about our progress and give you sneak peeks on what we&#39;re working on.</p>
 						<p className='mb-4'>High five!</p>
 						<p className='mb-4'>The team</p>
 						<p className='mb-4'>P.S.</p>
-						<p className='mb-4'><em>Liked this preview? Help us reach more people who care about healthy eating by sharing it with your friends!</em></p>
+						<p className='mb-10'><em>Liked this preview? Help us reach more people who care about healthy eating by sharing it with your friends!</em></p>
 						<ul className="flex flex-row gap-4">
-							<li><Link href={'/'} className="bg-blue-600 text-white py-2 px-4 rounded-md transition-colors hover:bg-blue-400">Share on Facebook</Link></li>
-							<li><Link href={'/'} className="bg-black text-white py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Share on X</Link></li>
+							<li><Link target="_blank" href={'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdestra.io%2Fconcept-survey'} className="bg-blue-600 text-white py-2 px-4 rounded-md transition-colors hover:bg-blue-400">Share on Facebook</Link></li>
+							<li><Link target="_blank" href={'https://x.com/intent/tweet?url=https%3A%2F%2Fdestra.io%2Fconcept-survey'} className="bg-black text-white py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Share on X</Link></li>
 						</ul>
 					</div>
-					<div className="w-5/12">
-						<iframe src="https://giphy.com/embed/hZj44bR9FVI3K" className="h-full w-full" allowFullScreen></iframe>
+					<div className="w-4/12">
+						<iframe src="https://giphy.com/embed/hZj44bR9FVI3K" className="h-full w-full pointer-events-none" allowFullScreen></iframe>
 					</div>
 				</div> 
 			}
@@ -134,7 +134,7 @@ const FormComponent = () => {
 							</div>
 						</div>
 
-						<div className="_form_element _x19489877 _full_width">
+						<div className="_form_element _x19489877 _full_width mb-4">
 							<label htmlFor="email" className="_form-label sr-only">Email <sup>*</sup></label>
 							<div className="_field-wrapper">
 								<input
@@ -149,7 +149,7 @@ const FormComponent = () => {
 						</div>
 
 						<div className="_button-wrapper _full_width">
-							<button id="_form_1_submit" className={`_submit bg-black py-2 px-6 text-white transition-colors hover:bg-gray-600 ${isProcessing ? "processing pointer-events-none" : ""}`} type="submit" disabled={isProcessing}>
+							<button id="_form_1_submit" className={`_submit bg-[#027e6f] rounded-md py-2 px-6 text-white transition-colors hover:bg-gray-600 ${isProcessing ? "processing pointer-events-none" : ""}`} type="submit" disabled={isProcessing}>
 								{isProcessing ? "Processing..." : "Submit"}
 							</button>
 						</div>

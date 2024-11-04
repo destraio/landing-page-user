@@ -1,19 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Kanit, Work_Sans, Rajdhani } from "next/font/google";
+import { Work_Sans } from "next/font/google";
 import "./globals.css";
 
-const kanit = Kanit({
-  display: 'swap',
-  weight: '400'
-});
+
 const workSans = Work_Sans({
   display: 'swap',
-  weight: '400'
-});
-const rajdhani = Rajdhani({
-  display: 'swap',
-  weight: '400'
+  preload: false,
 });
 
 export const metadata: Metadata = {

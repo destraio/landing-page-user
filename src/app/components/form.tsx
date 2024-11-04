@@ -1,57 +1,56 @@
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import Head from "next/head";
 
 const FormComponent = () => {
-	const formRef = useRef();
+	const formRef = useRef<HTMLFormElement | null>(null); // Specify formRef as HTMLFormElement
 	const [formMessage, setFormMessage] = useState(""); // State to manage messages
 	const [isProcessing, setIsProcessing] = useState(false); // State to manage button state
 	const [isFormSubmit, setFormSubmit] = useState(false); // State to manage button state
 
 	useEffect(() => {
+		const formElement = formRef.current;
+	
 		// Serialize the form data into a URL-encoded string for submission
-		const serializeForm = (form) => {
+		const serializeForm = (form: HTMLFormElement) => {
 			const formData = new FormData(form);
-			return new URLSearchParams(formData).toString();
+			return new URLSearchParams(formData as unknown as Record<string, string>).toString();
 		};
-
-		// Function to handle form submission
-		const handleFormSubmit = async (e) => {
+	
+		// Update handleFormSubmit to use native SubmitEvent
+		const handleFormSubmit = async (e: SubmitEvent) => {
 			e.preventDefault();
-			setIsProcessing(true); // Set button to processing state
-
-			// Simple client-side validation (example for email only)
-			const fullname = formRef.current.querySelector("input[name='fullname']").value;
+			setIsProcessing(true);
+	
+			const fullname = formElement?.querySelector<HTMLInputElement>("input[name='fullname']")?.value || "";
 			if (!fullname.trim() || fullname.split(" ").length < 2) {
 				setFormMessage("Please enter your full name.");
 				setIsProcessing(false);
 				return;
 			}
-
-			// Simple client-side validation (example for email only)
-			const email = formRef.current.querySelector("input[name='email']").value;
+	
+			const email = formElement?.querySelector<HTMLInputElement>("input[name='email']")?.value || "";
 			if (!email.match(/^[\+_a-z0-9-'&=]+(\.[\+_a-z0-9-']+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i)) {
 				setFormMessage("Enter a valid email address.");
 				setIsProcessing(false);
 				return;
 			}
-
+	
 			try {
-				const serializedData = serializeForm(formRef.current);
+				const serializedData = serializeForm(formElement!);
 				const response = await fetch(
 					`https://gitcannabis.activehosted.com/proc.php?${serializedData}&jsonp=true`,
 					{
-					method: "POST",
-					headers: { Accept: "application/json" },
+						method: "POST",
+						headers: { Accept: "application/json" },
 					}
 				);
-
+	
 				const result = await response.json();
-				
+	
 				if (result.action && result.action === "show_thank_you") {
-					// Success message or further actions
 					setFormMessage("Thank you for subscribing!");
 					setFormSubmit(true);
-					formRef.current.reset(); // Reset form on success
+					formElement?.reset();
 				} else {
 					setFormMessage("There was an issue with your submission. Please try again.");
 				}
@@ -62,35 +61,36 @@ const FormComponent = () => {
 				setIsProcessing(false);
 			}
 		};
-
+	
 		// Add event listener for form submission
-		formRef.current.addEventListener("submit", handleFormSubmit);
-
+		formElement?.addEventListener("submit", handleFormSubmit);
+	
 		// Cleanup event listener on unmount
 		return () => {
-			formRef.current.removeEventListener("submit", handleFormSubmit);
+			formElement?.removeEventListener("submit", handleFormSubmit);
 		};
 	}, []);
+	
 
 	return (
 		<>
 			{!isFormSubmit ?
 				<>
 					<h2 className="font-bold text-4xl mb-4">Hello! 👋 You caught us before we are ready.</h2>
-					<p className='mb-4'>We’re working hard to put this app together. Things are going well, and we should have more soon. If you’d like us to send you an update as we progress, just sign up below:</p>
+					<p className='mb-4 font-[500]'>We&#39;re working hard to put this app together. Things are going well, and we should have more soon. If you’d like us to send you an update as we progress, just sign up below:</p>
 				</>
 				: 
 				<div className="flex flex-row flex-nowrap gap-5">
-					<div className="w-7/12">
-						<h2 className="font-bold text-4xl mb-4">You’re on the list! 👍</h2>
-						<p className='mb-4'>Thanks so much for signing up for our pre-launch list. We'll be in touch soon to let you know about our progress and give you sneak peeks on what we're working on.</p>
+					<div className="w-7/12 font-[500]">
+						<h2 className="font-bold text-4xl mb-4">You&#39;re on the list! 👍</h2>
+						<p className="mb-4">Thanks so much for signing up for our pre-launch list. We&#39;ll be in touch soon to let you know about our progress and give you sneak peeks on what we&#39;re working on.</p>
 						<p className='mb-4'>High five!</p>
 						<p className='mb-4'>The team</p>
 						<p className='mb-4'>P.S.</p>
 						<p className='mb-4'><em>Liked this preview? Help us reach more people who care about healthy eating by sharing it with your friends!</em></p>
 						<ul className="flex flex-row gap-4">
-							<li><a href="/" className="bg-blue-600 text-white py-2 px-4 rounded-md transition-colors hover:bg-blue-400">Share on Facebook</a></li>
-							<li><a href="/" className="bg-black text-white py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Share on X</a></li>
+							<li><Link href={'/'} className="bg-blue-600 text-white py-2 px-4 rounded-md transition-colors hover:bg-blue-400">Share on Facebook</Link></li>
+							<li><Link href={'/'} className="bg-black text-white py-2 px-4 rounded-md transition-colors hover:bg-gray-700">Share on X</Link></li>
 						</ul>
 					</div>
 					<div className="w-5/12">
@@ -98,7 +98,6 @@ const FormComponent = () => {
 					</div>
 				</div> 
 			}
-
 
 			{!isFormSubmit ?
 				<form

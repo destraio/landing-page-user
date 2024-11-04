@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+
 import Image from 'next/image';
 import { useInViewport } from './hooks/useInViewport';
 import image01 from '../assets/images/1.jpeg';
@@ -25,6 +25,7 @@ import tracker from '../assets/images/tracker.png';
 import info from '../assets/images/info.png';
 import drops from '../assets/images/drops.png';
 import FormComponent from './components/form';
+import phone from '../assets/images/phone.png';
 
 export default function Home() {
 	// const [isClient, setIsClient] = useState(false);
@@ -43,7 +44,7 @@ export default function Home() {
 			text: 'Your everyday app for personalized healthy eating—focused on taste, cost, nutrition, and convenience.',
 			subtitle: null,
 			parameters: null,
-			img_path: image01,
+			img_path: phone,
 		},
 		{
 			title: 'Better nutrition, better life',
@@ -172,21 +173,21 @@ export default function Home() {
 					<div key={index} className={`scroll__panel h-screen flex flex-row justify-start items-center`}>
 						<div className="px-4 w-7/12">
 							<div className='max-w-xl px-2 m-auto'>
-								{index === 0 ? <h1 className="font-bold text-5xl mb-4">{item.title}</h1> : <h2 className="font-bold text-5xl mb-4">{item.title}</h2> }
-								<p>{item.text}</p>
+								{index === 0 ? <h1 className="font-bold text-5xl mb-12">{item.title}</h1> : <h2 className="font-bold text-5xl mb-12">{item.title}</h2> }
+								<p className='mb-10 font-[500]'>{item.text}</p>
 								{item.subtitle && item.subtitle.length > 0 ? <h3 className="font-bold text-xl mb-4 mt-6">{item.subtitle}</h3> : null}
 								{item.parameters && item.parameters.length > 0 ?
-									<ul className={`grid grid-cols-3 gap-5`}>
+									<ul className={`grid grid-cols-4 gap-5 items-center`}>
 										{item.parameters.map( (parameter, idx) => (
-											<li key={idx} className='w-full'><button className={`w-full inline-block py-2 px-4 text-xs shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
+											<li key={idx} className='w-full'><button className={`w-full inline-block py-2 px-4 text-sm font-medium shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
 										))}
 									</ul>
 								: null}
-								{item.subtitle_2 && item.subtitle_2.length > 0 ? <h3 className="font-bold text-xl mb-4 mt-6">{item.subtitle_2}</h3> : null}
+								{item.subtitle_2 && item.subtitle_2.length > 0 ? <h3 className="font-bold text-xl mb-4 mt-12">{item.subtitle_2}</h3> : null}
 								{item.parameters_2 && item.parameters_2.length > 0 ?
-									<ul className={`grid grid-cols-3 gap-5`}>
+									<ul className={`grid grid-cols-4 gap-5 items-center`}>
 										{item.parameters_2.map( (parameter, idx) => (
-											<li key={idx} className='w-full'><button className={`w-full max-w-[220px] inline-block py-2 px-4 text-xs shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
+											<li key={idx} className='w-full'><button className={`w-full inline-block py-2 px-4 text-sm font-medium shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
 										))}
 									</ul>
 								: null}
@@ -197,7 +198,7 @@ export default function Home() {
 								<Image
 									src={item.img_path}
 									alt=""
-									className="w-full h-full max-h-[80lvh] m-auto object-cover object-center"
+									className={`w-full h-full max-h-[80lvh] m-auto ${index === 0 ? 'object-contain' : 'object-cover'} object-center`}
 								/> : null }
 						</div>
 					</div>
@@ -235,8 +236,8 @@ export default function Home() {
 				<div className={`h-screen flex flex-row justify-start items-center relative bg-[#027e6f]`}>
 					<div className="px-4 w-full">
 						<div className='max-w-screen-xl px-2 m-auto text-center'>
-							<h2 className="font-bold text-5xl mb-10 text-white">What’s the ROI of Healthy Eating?</h2>
-							<div className='grid grid-cols-3 gap-8 text-xl'>
+							<h2 className="font-bold text-5xl mb-20 text-white">What’s the ROI of Healthy Eating?</h2>
+							<div className='grid grid-cols-3 gap-8 text-xl font-[500]'>
 								<div className='bg-white p-4 rounded-lg min-h-64 flex items-center justify-center'>
 									<p>Improved health</p>
 								</div>
@@ -254,8 +255,8 @@ export default function Home() {
 				<div className={`scroll__panel h-screen flex flex-row justify-start items-center relative z-1 bg-white`}>
 					<div className="px-4 w-7/12">
 						<div className='max-w-xl px-2 m-auto'>
-							<h2 className="font-bold text-5xl mb-4">Healthy eating, higher quality of life</h2>
-							<p>Eat smarter with ABC App to fuel your body, boost your energy, and improve your overall well-being.</p>
+							<h2 className="font-bold text-5xl mb-12">Healthy eating, higher quality of life</h2>
+							<p className='font-[500]'>Eat smarter with ABC App to fuel your body, boost your energy, and improve your overall well-being.</p>
 						</div>
 					</div>
 					<div className={`w-5/12 flex items-center justify-center transition-opacity bg-white ${inViewStates[DATA.length] ? 'opacity-100' : 'opacity-0'}`}>
@@ -278,9 +279,9 @@ export default function Home() {
 
 				<div className={`scroll__panel h-screen flex flex-row justify-start relative items-center bg-white`}>
 					<div className="px-4 w-full">
-						<div className='max-w-lg px-2 m-auto text-center'>
+						<div className='max-w-lg px-2 m-auto text-center font-[500]'>
 							<p>You are invited to take this</p>
-							<h2 className="font-bold text-5xl mb-4">Survey</h2>
+							<h2 className="font-bold text-5xl mb-12">Survey</h2>
 							<p className='mb-2'>Help us shape the future of personalized healthy eating—your input matters, and it only takes 5 minutes to complete!</p>
 							<a className='border-black border-solid border-2 px-4 py-2 inline-block rounded-md transition-colors hover:border-gray-700 hover:bg-gray-700 hover:text-white' href="https://forms.office.com/pages/responsepage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAdMxhw5UMDFaN01MWURVSEU2TVpaUzk0VVoxUDZaRi4u&route=shorturl" target='_blank'>Start Now</a>
 						</div>

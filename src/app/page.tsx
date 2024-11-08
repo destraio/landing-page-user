@@ -5,18 +5,18 @@ import Image from 'next/image';
 import { useInViewport } from './hooks/useInViewport';
 import phone from '../assets/images/1.png';
 import phoneShell from '../assets/images/phone-shell.png';
-import mock1 from '../assets/images/imock-1-min.png';
-import image01 from '../assets/images/1.jpeg';
+// import mock1 from '../assets/images/imock-1-min.png';
+// import image01 from '../assets/images/1.jpeg';
 import image02 from '../assets/images/cook-times.jpg';
 import image03 from '../assets/images/cost-per-serving.jpg';
 import image04 from '../assets/images/lifestyle-diet.jpg';
 import image05 from '../assets/images/mind-allergies.jpg';
 import image06 from '../assets/images/cuisine-meal.jpg';
-import results from '../assets/images/results.jpg';
-import image07 from '../assets/images/7.jpg';
-import image08 from '../assets/images/kitchen-user.jpg';
-import image09 from '../assets/images/9.jpg';
-import img_connect from '../assets/images/connect-person.jpg';
+// import results from '../assets/images/results.jpg';
+// import image07 from '../assets/images/7.jpg';
+// import image08 from '../assets/images/kitchen-user.jpg';
+// import image09 from '../assets/images/9.jpg';
+// import img_connect from '../assets/images/connect-person.jpg';
 import connect from '../assets/images/connect.png';
 import connectReady from '../assets/images/connectReady.png';
 import expense from '../assets/images/expense.png';
@@ -503,7 +503,7 @@ export default function Home() {
 						<div className={`grid grid-cols-12 gap-20 items-start`}>
 							<div className={`col-span-7`}>
 								{EXPLORE.map((item, index) => (
-									<div className={`min-h-screen flex items-center justify-center`}>
+									<div key={index} className={`min-h-screen flex items-center justify-center`}>
 										<div>
 											<h2 className="font-bold text-6xl mb-12">{item.title}</h2>
 											<p className='mb-10 text-2xl font-[500]'>{item.text}</p>

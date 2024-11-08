@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useInViewport } from './hooks/useInViewport';
 import phone from '../assets/images/1.png';
 import phoneShell from '../assets/images/phone-shell.png';
-// import mock1 from '../assets/images/imock-1-min.png';
+import mock1 from '../assets/images/imock-1-min.png';
 // import image01 from '../assets/images/1.jpeg';
 import image02 from '../assets/images/cook-times.jpg';
 import image03 from '../assets/images/cost-per-serving.jpg';
@@ -116,7 +116,7 @@ export default function Home() {
 			bg: 'bg-white',
 			title: 'Save recipes and videos in your cookbook.',
 			tagline: 'Recipe Book.',
-			text: 'Save a personalized collection of meals you love, making it easy to revisit favorites and experiment with new ideas. Conveniently organize family recipes, adapt dishes to your taste, and track adjustments for perfecting them over time.',
+			text: 'Save a personalized collection of meals you love, making it quick and easy to revisit favorites and experiment with new ideas. Conveniently organize family recipes, adapt dishes to your taste, and track adjustments for perfecting them over time.',
 			subtitle: null,
 			more_info: null,
 			parameters: null,
@@ -190,7 +190,7 @@ export default function Home() {
 			bg: 'bg-gray-100',
 			title: 'Plan parties with ease.',
 			tagline: 'Party Planner.',
-			text: 'Organize and coordinate every aspect of an event seamlessly from start to finish. This includes selecting a theme, managing budgets, arranging food, drinks, and entertainment, and handling guest lists. invitations and confirmations.',
+			text: 'Organize and coordinate every aspect of an event seamlessly from start to finish. This includes selecting a theme, managing budgets, arranging food, drinks, and entertainment, and handling guest lists, invitations and confirmations.',
 			subtitle: null,
 			more_info: null,
 			parameters: null,
@@ -202,7 +202,7 @@ export default function Home() {
 			bg: 'bg-white',
 			title: 'Feel free to ask questions.',
 			tagline: 'Personal Assistant.',
-			text: 'Your AI assistant is here to help — whether it\'s with recipe ideas, nutrition and dietary goals, cost-effective meal options, time-saving tips, meal planning, grocery assistance, and more!',
+			text: 'Your AI assistant is here to help — whether it\'s with recipe ideas, nutrition and dietary goals, cost-effective meal options, time-saving tips, meal planning, grocery assistance, and more! ---[new paragraph]--- The assistant draws on your personal context while keeping your data private.',
 			subtitle: null,
 			more_info: null,
 			parameters: null,
@@ -223,13 +223,15 @@ export default function Home() {
 	];
 	const EXPLORE = [
 		{
+			tagline: 'Time Filter.',
 			title: 'Never take too long.',
 			text: 'Your time is valuable. Discover quick and easy recipes designed to fit into your busy schedule without sacrificing flavor or nutrition.',
-			subtitle: 'Cook Time',
+			subtitle: 'Cooking Time',
 			parameters: ['Under 10 min.', '10 to 15 min.', '15 to 30 min.', '30 min. +'],
 			img_path: image02,
 		},
 		{
+			tagline: 'Cost Filter.',
 			title: 'Never spend too much.',
 			text: 'Discover recipes that fit your budget. Enjoy meal variety and nutritious options that support your lifestyle with ease.',
 			subtitle: 'Cost per Serving',
@@ -237,6 +239,7 @@ export default function Home() {
 			img_path: image02,
 		},
 		{
+			tagline: 'Diet Filter.',
 			title: 'Access a wide variety of diets.',
 			text: 'Explore recipe options that suit your dietary needs, preferences, and lifestyle goals, making healthy eating more enjoyable and accessible.',
 			subtitle: 'Lifestyle Diet',
@@ -244,6 +247,7 @@ export default function Home() {
 			img_path: image02,
 		},
 		{
+			tagline: 'Allergen Filter.',
 			title: 'Mind allergies.',
 			text: 'Exclude ingredients that are personally unhealthy for you, ensuring recipes are safe, enjoyable, and tailored to your dietary needs.',
 			subtitle: 'Allergens',
@@ -251,12 +255,27 @@ export default function Home() {
 			img_path: image02,
 		},
 		{
-			title: 'Tailor to your taste.',
-			text: 'Select recipes based on your cuisine preferences and meal types, making each meal a perfect match for your unique tastes.',
+			tagline: 'Cuisine Filter.',
+			title: 'Cater to your taste.',
+			text: 'Select recipes based on your cuisine preferences, making each dish a perfect match for your unique tastes.',
 			subtitle: 'Cuisine',
 			parameters: ['American', 'Chinese', 'Indian', 'Italian', 'Mexican', 'World'],
+			img_path: image06,
+		},
+		{
+			tagline: 'Course and Meal Filters.',
+			title: 'Improve relevance of this recipe.',
+			text: 'Quickly narrow down recipes that fit the type of meal and course you\'re planning. Also improve planning complete meals or weekly menus.',
+			subtitle: 'Course',
+			parameters: ['Appetizer', 'Soup', 'Main', 'Side', 'Salad', 'Desert'],
 			subtitle_2: 'Meal',
 			parameters_2: ['Breakfast', 'Brunch', 'Lunch/Dinner', 'Snack'],
+			img_path: image06,
+		},
+		{
+			tagline: 'Your filters applied.',
+			title: 'Enjoy your selection.',
+			text: 'Given your choice of multiple filters, get exactly what you want regarding cooking time, cost, lifestyle diet, allergens exclusion, cusinine, course, and meal type.',
 			img_path: image06,
 		},
 	];
@@ -270,66 +289,76 @@ export default function Home() {
 		},
 		{
 			id: 'explore',
-			title: 'Search',
+			title: 'Explore',
 			iconDefault: searchReady,
 			icon: search,
 			tip: 'Explore recipes by cooking time, cost, dietary needs, cuisine, meal and course',
 		},
 		{
-			title: 'Reverse Lookup',
-			iconDefault: reverseReady,
-			icon: reverse,
-			tip: 'Find recipes based on the ingredients that you have'
-		},
-		{
-			title: 'Nutrition Analyzer',
-			iconDefault: nutritionReady,
-			icon: nutrition,
-			tip: 'Discover the nutritional value of any food or recipe'
-		},
-		{
+			id: 'recipe-book',
 			title: 'Recipe Book',
 			iconDefault: recipebookReady,
 			icon: recipebook,
 			tip: 'Your recipe book to import recipes and videos, create your own, save, write or edit'
 		},
 		{
-			title: 'Connect',
-			iconDefault: connectReady,
-			icon: connect,
-			tip: 'Connect with family, friends, groups, and experts to post and share'
-		},
-		{
+			id: 'meal-planner',
 			title: 'Meal Planner',
 			iconDefault: plannerReady,
 			icon: planner,
 			tip: 'Plan meals daily, weekly, monthly, or in advance of any special occasion'
 		},
 		{
+			id: 'grocery-shopper',
 			title: 'Grocery Shopper',
 			iconDefault: groceryReady,
 			icon: grocery,
 			tip: 'Create digital shopping lists, compare prices and order directly from your favorite grocers'
 		},
 		{
+			id: 'nutrition-analyzer',
+			title: 'Nutrition Analyzer',
+			iconDefault: nutritionReady,
+			icon: nutrition,
+			tip: 'Discover the nutritional value of any food or recipe'
+		},
+		{
+			id: 'expense-tracker',
 			title: 'Expense Tracker',
 			iconDefault: expenseReady,
 			icon: expense,
 			tip: 'Track food expenses by item or category daily, weekly and monthly'
 		},
 		{
+			id: 'nutrition-tracker',
 			title: 'Nutrition Tracker',
 			iconDefault: trackerReady,
 			icon: tracker,
 			tip: 'Track calories, macros and nutrients daily, weekly and monthly'
 		},
 		{
+			id: 'reverse-lookup',
+			title: 'Reverse Lookup',
+			iconDefault: reverseReady,
+			icon: reverse,
+			tip: 'Find recipes based on the ingredients that you have'
+		},
+		{
+			id: 'party-planner',
 			title: 'Party Planner',
 			iconDefault: partyReady,
 			icon: party,
 			tip: 'Organize party events, menus, budget, invites, confirmations'
 		},
 		{
+			id: 'connect',
+			title: 'Connect',
+			iconDefault: connectReady,
+			icon: connect,
+			tip: 'Connect with family, friends, groups, and experts to post and share'
+		},
+		{
+			id: 'assitant',
 			title: 'Assistant',
 			iconDefault: partyReady,
 			icon: party,
@@ -341,7 +370,7 @@ export default function Home() {
 		<main className={`flex`}>
 			<section className="scroll flex-1 text-lg">
 
-				<div className={`scroll__panel`}>
+				{/* <div className={`scroll__panel`}>
 					<div className='max-w-screen-2xl m-auto min-h-[100lvh] relative py-6 flex justify-center items-center'>
 						<div className={`max-w-[800px] m-auto`}>
 							<div className='text-center'>
@@ -358,9 +387,9 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 
-				{/*  <div className={`scroll__panel`}>
+				 <div className={`scroll__panel`}>
 					<div className='max-w-screen-2xl m-auto min-h-[100lvh] relative py-6 flex'>
 						<div className={`grid grid-cols-12 gap-20 items-center`}>
 							<div className={`col-span-7`}>
@@ -369,13 +398,13 @@ export default function Home() {
 										<Image className={`w-[50px] h-[50px]`} src={abcLogo} alt='ABC Logo' /> <span>ABC App</span>
 									</div>
 									<h1 className="font-bold text-6xl mb-12">Healthy eating made easy.</h1>
-									<p className='mb-10 text-2xl font-[500] max-w-[600px] '>Your everyday app for personalized healthy eating - focused on taste, cost, nutrition, and convenience. Simple, personal, private.</p>
+									<p className='mb-10 text-2xl font-bold text-gray-500'>Your <span className='text-black'>everyday app</span> for personalized healthy eating -<br />focused on nutrition, convenience, affordability,<br />and taste. Simple, personal, private.</p>
 								</div>
 							</div>
 							<div className={`col-span-5`}>
 								<div className={`flex items-center justify-center`}>
 									<Image
-										src={phoneShell}
+										src={mock1}
 										alt=""
 										className={`max-h-[80lvh] w-auto`}
 									/>
@@ -383,7 +412,7 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
-				</div> */}
+				</div>
 
 				<div className={`h-screen flex flex-row justify-start items-center relative bg-white`}>
 					<div className="px-4 w-full">
@@ -408,7 +437,7 @@ export default function Home() {
 												/>
 											</div>
 										</dd>
-										<dt className={`text-lg font-bold flex gap-2 items-center justify-center`}>
+										<dt className={`text-lg font-bold flex gap-y-2 gap-x-8 items-center justify-center`}>
 											<Link href={`#${item.id}`} className='flex gap-3 items-center'>{item.title} <Image
 												src={arrow}
 												alt=""
@@ -497,7 +526,7 @@ export default function Home() {
 				))}
 				
 				<div className="fixed inset-0 z-50 flex items-center justify-end  transform transition-transform duration-1000 translate-x-full" style={{ transform: isOpen ? 'translateX(0)' : 'translateX(100%)' }}>
-					<div className="bg-white py-6 px-20 shadow-xl max-w-[90lvw] w-full h-full overflow-scroll">
+					<div className="bg-gray-50 py-6 px-20 shadow-xl max-w-[90lvw] w-full h-full overflow-scroll">
 						<button onClick={closeModal}>Close</button>
 
 						<div className={`grid grid-cols-12 gap-20 items-start`}>
@@ -505,12 +534,22 @@ export default function Home() {
 								{EXPLORE.map((item, index) => (
 									<div key={index} className={`min-h-screen flex items-center justify-center`}>
 										<div>
+										<p className="font-bold text-6xl mb-0 text-[#d464ae]">{item.tagline}</p>
 											<h2 className="font-bold text-6xl mb-12">{item.title}</h2>
 											<p className='mb-10 text-2xl font-[500]'>{item.text}</p>
+											{item.subtitle && item.subtitle.length > 0 ? <h3 className="font-bold text-xl mb-4 mt-6">{item.subtitle}</h3> : null}
 											{item.parameters && item.parameters.length > 0 ?
 												<ul className={`grid grid-cols-4 gap-5 items-center`}>
 													{item.parameters.map( (parameter, idx) => (
 														<li key={idx} className='w-full'><button className={`w-full bg-white inline-block py-2 px-2 leading-none text-sm font-[600] shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
+													))}
+												</ul>
+											: null}
+											{item.subtitle_2 && item.subtitle_2.length > 0 ? <h3 className="font-bold text-xl mb-4 mt-12">{item.subtitle_2}</h3> : null}
+											{item.parameters_2 && item.parameters_2.length > 0 ?
+												<ul className={`grid grid-cols-4 gap-5 items-center`}>
+													{item.parameters_2.map( (parameter, idx) => (
+														<li key={idx} className='w-full'><button className={`w-full bg-white inline-block py-2 px-4 text-sm font-[600] shadow-md shadow-gray-400 rounded border border-gray-200 border-solid hover:border-gray-300 hover:bg-gray-100`}>{parameter}</button></li>
 													))}
 												</ul>
 											: null}

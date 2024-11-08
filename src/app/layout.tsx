@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Work_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 
-const workSans = Work_Sans({
+const inter = Inter({
   display: 'swap',
   preload: false,
 });
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${workSans.className} antialiased`}
+        className={`${inter.className} antialiased`}
       >
         {children}
       </body>
